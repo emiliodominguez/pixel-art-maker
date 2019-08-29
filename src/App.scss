@@ -1,0 +1,37 @@
+.main-container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 30px 0 50px;
+}
+
+.container-control-group {
+	text-align: center;
+}
+
+.logo {
+	max-width: 200px;
+	margin-bottom: 25px;
+}
+
+.options {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	margin-top: 25px;
+
+	button {
+		width: 100%;
+		border: none;
+		outline: none;
+		font-family: 'Press Start 2P', cursive;
+		text-align: center;
+		padding: 10px 15px;
+		background-color: yellow;
+		cursor: pointer;
+
+		&:focus {
+			background-color: darken(yellow, 5%);
+		}
+	}
+}

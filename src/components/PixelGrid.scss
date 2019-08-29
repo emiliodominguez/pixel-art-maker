@@ -1,0 +1,24 @@
+@import "../styles/variables.scss";
+
+.pixel-grid {
+	min-width: $pixelGrid-width;
+    height: $pixelGrid-height;
+    display: grid;
+	grid-template-columns: repeat(auto-fit, 15px);
+	margin-right: 50px;
+
+	div {
+        position: relative;
+        background-color: #fff;
+
+        &::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            outline: 1px solid #222;
+        }
+	}
+}

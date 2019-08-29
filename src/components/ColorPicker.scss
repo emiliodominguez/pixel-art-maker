@@ -1,0 +1,27 @@
+@import "../styles/variables.scss";
+
+.color-palette {
+    width: 400px;
+    display: grid;
+	justify-content: center;
+    grid-template-columns: repeat(auto-fit, 25px);
+
+    button {
+		height: 15px;
+        border: none;
+        outline: 1px solid #222;
+        transition: transform ease 250ms;
+        cursor: pointer;
+
+        &:hover {
+            transform: scale(1.25);
+        }
+	}
+}
+	
+.selected-color {
+	width: 75px;
+	height: 25px;
+	margin: 15px auto 0;
+	border: 5px solid #fff;
+}
