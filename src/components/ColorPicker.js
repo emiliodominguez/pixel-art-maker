@@ -6,17 +6,17 @@ class ColorPicker extends React.Component
 {
     generateColorPalette = () =>
     {
-        const { colorNames, selectColor } = this.props;
-        const colors = [];
+        let colors = [];
 
-        for (let i = 0; i < colorNames.length; i++) {
-            let color = colorNames[i];
+        for (let i = 0; i < this.props.colorNames.length; i++)
+        {
+            let color = this.props.colorNames[i];
 
             colors.push(
                 <button
-                    onClick={ selectColor }
+                    onClick={this.props.selectColor}
                     style={{ backgroundColor: color }}
-                    key={ i }>
+                    key={i}>
                 </button>
             );
         }
@@ -26,16 +26,14 @@ class ColorPicker extends React.Component
 
     render()
     {
-		const { selectedColor } = this.props;
-
         return (
-			<>
-				<div className="color-palette">
-					{ this.generateColorPalette() }
-				</div>
-				
-				<div className="selected-color" style={{ backgroundColor: selectedColor }} />
-			</>
+            <>
+                <div className="color-palette">
+                    {this.generateColorPalette()}
+                </div>
+
+                <div className="selected-color" style={{ backgroundColor: this.props.selectedColor }} />
+            </>
         );
     }
 }

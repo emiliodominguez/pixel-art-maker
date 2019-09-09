@@ -6,15 +6,13 @@ class Examples extends React.Component
 {
     render()
     {
-        const { puzzles } = this.props;
-
         return (
             <ul className="example-images">
-                {puzzles.map(( puzzle, index ) =>
-                    <li key={ index }>
+                {this.props.puzzles.map((puzzle, index) =>
+                    <li key={index}>
                         <img
-                            src={ require(`../static/puzzles/${ puzzle }.png`) }
-                            alt={ puzzle }
+                            src={require(`../static/puzzles/${puzzle}.png`)}
+                            alt={puzzle}
                         />
                     </li>
                 )}

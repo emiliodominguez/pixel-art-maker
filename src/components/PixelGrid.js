@@ -16,71 +16,57 @@ class PixelGrid extends React.Component
 
     componentDidMount()
     {
-        const pixelGrid = document.querySelector( '.pixel-grid' );
+        const pixelGrid = document.querySelector('.pixel-grid');
 
-        pixelGrid.addEventListener( 'mousedown', () => this.checkMousePressed(true) );
-        pixelGrid.addEventListener( 'mouseup', () => this.checkMousePressed(false) );
-        pixelGrid.addEventListener( 'mouseover', this.paintPixel );
-	}
-	
-	componentDidUpdate()
-	{
-		const { gridClear } = this.props;
+        pixelGrid.addEventListener('mousedown', () => this.checkMousePressed(true));
+        pixelGrid.addEventListener('mouseup', () => this.checkMousePressed(false));
+        pixelGrid.addEventListener('mouseover', this.paintPixel);
+    }
 
-		if ( gridClear )
-		{
-			this.pixelGridActions( 'clear' );
-		}
-	}
+    componentDidUpdate()
+    {
+        if (this.props.gridClear)
+            this.pixelGridActions('clear');
+    }
 
     generatePixelGrid = () =>
     {
-        const { pixelGrid } = this.state;
-        const pixels = [];
+        let pixels = [];
 
-        for (let i = 0; i < pixelGrid; i++)
+        for (let i = 0; i < this.state.pixelGrid; i++)
         {
-            pixels.push(<div key={ i }></div>)
+            pixels.push(<div key={i}></div>)
         }
 
         return pixels;
-	}
+    }
 
     checkMousePressed = boolean =>
     {
         this.setState({ mousePressed: boolean });
     }
 
-    paintPixel = e =>
+    paintPixel = e => 
     {
-        const { mousePressed } = this.state;
-        const { selectedColor } = this.props;
-
-        if (mousePressed)
-        {
-            e.target.style.backgroundColor = selectedColor;
-        }
+        if (this.state.mousePressed)
+            e.target.style.backgroundColor = this.props.selectedColor;
     }
-	
-	pixelGridActions = ( action ) =>
-	{
-		const pixelGrid = document.querySelectorAll('.pixel-grid div');
-		
-		if ( action === 'preview ')
-		{
-			pixelGrid.forEach( pixel => pixel.style.outline = 'transparent' );
-		}
-		else if ( action === 'clear' )
-		{
-			pixelGrid.forEach( pixel => pixel.style.backgroundColor = '#fff' );
-		}
-	}
-    
+
+    pixelGridActions = (action) =>
+    {
+        const pixelGrid = document.querySelectorAll('.pixel-grid div');
+
+        if (action === 'preview ')
+            pixelGrid.forEach(pixel => pixel.style.outline = 'transparent');
+        else if (action === 'clear')
+            pixelGrid.forEach(pixel => pixel.style.backgroundColor = '#fff');
+    }
+
     render()
     {
         return (
             <div className="pixel-grid">
-                { this.generatePixelGrid() }
+                {this.generatePixelGrid()}
             </div>
         );
     }
