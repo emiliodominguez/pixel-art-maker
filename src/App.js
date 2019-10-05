@@ -1,81 +1,76 @@
-import React from 'react';
-
+import React, { Component } from 'react';
+import { PixelGrid } from './components/PixelGrid';
+import { ColorPicker } from './components/ColorPicker';
+import { Examples } from './components/Examples';
+import { colors } from './constants/Colors';
+import { examplePuzzles } from './constants/ExamplePuzzles';
 import './App.scss';
 
-import PixelGrid from './components/PixelGrid';
-import ColorPicker from './components/ColorPicker';
-import Examples from './components/Examples';
-import { colors } from './constants/Colors';
-import { puzzles } from './constants/Puzzles';
-
-class App extends React.Component
+class App extends Component
 {
-    constructor(props)
-    {
-        super(props);
+	state = {
+		pixels: [...Array(1749)],
+		colors: colors,
+		examples: examplePuzzles,
+		selectedColor: null,
+		gridClear: null
+	}
 
-        this.state = {
-            puzzles: puzzles,
-            colorNames: colors,
-            selectedColor: '#000',
-            gridClear: null
-        }
-    }
+	componentDidUpdate = () =>
+	{
+		if (this.state.gridClear) this.setState({ gridClear: null });
+	}
 
-    componentDidUpdate = () =>
-    {
-        if (this.state.gridClear)
-            this.setState({ gridClear: null });
-    }
+	setPixelGrid = pixels =>
+	{
+		this.setState({
+			pixels: pixels,
+			gridClear: true
+		});
+	}
 
-    clearGrid = () =>
-    {
-        this.setState({ gridClear: true });
-    }
+	setColor = e =>
+	{
+		this.setState({ selectedColor: e.target.style.backgroundColor });
+	}
 
-    selectColor = e =>
-    {
-        this.setState({ selectedColor: e.target.style.backgroundColor });
-    }
+	render()
+	{
+		return (
+			<div className="main-container">
+				<PixelGrid
+					pixels={ this.state.pixels }
+					selectedColor={ this.state.selectedColor || '#000' }
+					gridClear={ this.state.gridClear }
+				/>
 
-    render()
-    {
-        const { puzzles, colorNames, selectedColor, previewActive, gridClear } = this.state;
+				<div className="right-panel">
+					<img
+						className="logo"
+						src={`${process.env.PUBLIC_URL}/logo.png`}
+						alt="Los Simpsons"
+					/>
 
-        return (
-            <>
-                <div className="main-container">
-                    <PixelGrid
-                        selectedColor={selectedColor}
-                        previewActive={previewActive}
-                        gridClear={gridClear}
-                    />
+					<ColorPicker
+						colors={ this.state.colors.sort() }
+						onSelectColor={ this.setColor }
+						selectedColor={ this.state.selectedColor || '#000' }
+					/>
 
-                    <div className="container-control-group">
-                        <img
-                            className="logo"
-                            src={require('./static/logo.png')}
-                            alt="Los Simpsons"
-                        />
+					<div className="options">
+						<button onClick={ () => this.setPixelGrid([...Array(1749)]) }>Borrar todo</button>
+					</div>
+				</div>
 
-                        <ColorPicker
-                            colorNames={colorNames.sort()}
-                            selectColor={this.selectColor}
-                            selectedColor={selectedColor}
-                        />
-
-                        <div className="options">
-                            <button onClick={this.clearGrid}>Borrar todo</button>
-                        </div>
-                    </div>
-                </div>
-
-                <Examples
-                    puzzles={puzzles}
-                />
-            </>
-        );
-    }
+				<div className="puzzle-examples">
+					<Examples
+						examples={ this.state.examples }
+						onSelectExample={ this.setPixelGrid }
+					/>
+				</div>
+			</div>
+		);
+	}
 }
 
 export default App;

@@ -1,7 +1,6 @@
 @import "../styles/variables.scss";
 
 .color-palette {
-    width: 400px;
     display: grid;
 	justify-content: center;
     grid-template-columns: repeat(auto-fit, 25px);

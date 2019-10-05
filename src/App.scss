@@ -1,37 +1,43 @@
 .main-container {
-	display: flex;
+	max-width: 1250px;
+	min-height: 100vh;
+	margin: 0 auto;
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	justify-content: center;
 	align-items: center;
-	justify-content: center;
-	margin: 100px 0 50px;
+	grid-gap: 50px;
 }
 
-.container-control-group {
+.right-panel {
 	text-align: center;
-}
 
-.logo {
-	max-width: 200px;
-	margin-bottom: 25px;
-}
+	.logo {
+		max-width: 200px;
+		margin-bottom: 25px;
+	}
 
-.options {
-	width: 100%;
-	display: flex;
-	justify-content: center;
-	margin-top: 25px;
-
-	button {
+	.options {
 		width: 100%;
-		border: none;
-		outline: none;
-		font-family: 'Press Start 2P', cursive;
-		text-align: center;
-		padding: 10px 15px;
-		background-color: yellow;
-		cursor: pointer;
+		margin-top: 25px;
 
-		&:focus {
-			background-color: darken(yellow, 5%);
+		button {
+			width: 100%;
+			border: none;
+			outline: none;
+			text-align: center;
+			padding: 10px 15px;
+			background-color: #ffff00;
+			font-family: "Press Start 2P", cursive;
+			cursor: pointer;
+
+			&:focus {
+				background-color: darken(#ffff00, 5%);
+			}
 		}
 	}
+}
+
+.puzzle-examples {
+	grid-column: span 2;
 }

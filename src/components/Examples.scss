@@ -1,20 +1,21 @@
 @import "../styles/variables.scss";
 
-.example-images {
-    max-width: $pixelGrid-width;
-    margin: 0 auto;
+.examples {
     display: grid;
-    grid-gap: 15px;
+    grid-gap: 25px;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    list-style: none;
+	list-style: none;
+	padding: 0;
 
     img {
 		max-width: 100%;
-		transition: transform ease 250ms;
+		filter: grayscale(1);
+		transition: filter ease 250ms;
+		user-select: none;
 		cursor: pointer;
 		
 		&:hover {
-			transform: scale(1.05);
+			filter: grayscale(0);
 		}
     }
 }
