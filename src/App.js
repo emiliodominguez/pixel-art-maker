@@ -12,6 +12,7 @@ class App extends Component
 		pixels: [...Array(1749)],
 		colors: colors,
 		examples: examplePuzzles,
+		exampleSelected: '',
 		selectedColor: null,
 		gridClear: null
 	}
@@ -21,17 +22,26 @@ class App extends Component
 		if (this.state.gridClear) this.setState({ gridClear: null });
 	}
 
-	setPixelGrid = pixels =>
+	setExample = (pixels, name) =>
 	{
 		this.setState({
 			pixels: pixels,
-			gridClear: true
+			exampleSelected: name,
+			gridClear: true,
 		});
 	}
 
 	setColor = e =>
 	{
 		this.setState({ selectedColor: e.target.style.backgroundColor });
+	}
+
+	clearGrid = () =>
+	{
+		this.setState({
+			pixels: [...Array(1749)],
+			gridClear: true
+		});
 	}
 
 	render()
@@ -58,14 +68,15 @@ class App extends Component
 					/>
 
 					<div className="options">
-						<button onClick={ () => this.setPixelGrid([...Array(1749)]) }>Borrar todo</button>
+						<button onClick={ this.clearGrid }>Borrar todo</button>
 					</div>
 				</div>
 
 				<div className="puzzle-examples">
 					<Examples
 						examples={ this.state.examples }
-						onSelectExample={ this.setPixelGrid }
+						onSelectExample={ this.setExample }
+						exampleSelected={ this.state.exampleSelected }
 					/>
 				</div>
 			</div>
