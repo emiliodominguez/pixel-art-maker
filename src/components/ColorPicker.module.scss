@@ -1,6 +1,6 @@
 @import "../styles/variables.scss";
 
-.color-palette {
+.colorPalette {
     display: grid;
 	justify-content: center;
     grid-template-columns: repeat(auto-fit, 25px);
@@ -18,7 +18,7 @@
 	}
 }
 	
-.selected-color {
+.selectedColor {
 	width: 75px;
 	height: 25px;
 	margin: 15px auto 0;

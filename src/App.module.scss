@@ -1,15 +1,20 @@
-.main-container {
+.mainContainer {
 	max-width: 1250px;
-	min-height: 100vh;
+	height: 100vh;
 	margin: 0 auto;
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
 	justify-content: center;
 	align-items: center;
 	grid-gap: 50px;
+
+	@media (max-width: 1920px) {
+		transform: scale(.85);
+		max-height: 100vh;
+	}
 }
 
-.right-panel {
+.rightPanel {
 	text-align: center;
 
 	.logo {
@@ -38,6 +43,6 @@
 	}
 }
 
-.puzzle-examples {
+.puzzleExamples {
 	grid-column: span 2;
 }

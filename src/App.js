@@ -4,7 +4,7 @@ import { ColorPicker } from './components/ColorPicker';
 import { Examples } from './components/Examples';
 import { colors } from './constants/Colors';
 import { examplePuzzles } from './constants/ExamplePuzzles';
-import './App.scss';
+import styles from './App.module.scss';
 
 class App extends Component
 {
@@ -47,36 +47,36 @@ class App extends Component
 	render()
 	{
 		return (
-			<div className="main-container">
+			<div className={styles.mainContainer}>
 				<PixelGrid
-					pixels={ this.state.pixels }
-					selectedColor={ this.state.selectedColor || '#000' }
-					gridClear={ this.state.gridClear }
+					pixels={this.state.pixels}
+					selectedColor={this.state.selectedColor || '#000'}
+					gridClear={this.state.gridClear}
 				/>
 
-				<div className="right-panel">
+				<div className={styles.rightPanel}>
 					<img
-						className="logo"
+						className={styles.logo}
 						src={`${process.env.PUBLIC_URL}/logo.png`}
 						alt="Los Simpsons"
 					/>
 
 					<ColorPicker
-						colors={ this.state.colors.sort() }
-						onSelectColor={ this.setColor }
-						selectedColor={ this.state.selectedColor || '#000' }
+						colors={this.state.colors.sort()}
+						onSelectColor={this.setColor}
+						selectedColor={this.state.selectedColor || '#000'}
 					/>
 
-					<div className="options">
-						<button onClick={ this.clearGrid }>Borrar todo</button>
+					<div className={styles.options}>
+						<button onClick={this.clearGrid}>Borrar todo</button>
 					</div>
 				</div>
 
-				<div className="puzzle-examples">
+				<div className={styles.puzzleExamples}>
 					<Examples
-						examples={ this.state.examples }
-						onSelectExample={ this.setExample }
-						exampleSelected={ this.state.exampleSelected }
+						examples={this.state.examples}
+						onSelectExample={this.setExample}
+						exampleSelected={this.state.exampleSelected}
 					/>
 				</div>
 			</div>

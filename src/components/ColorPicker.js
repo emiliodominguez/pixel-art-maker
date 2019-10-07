@@ -1,19 +1,19 @@
 import React from 'react';
-import './ColorPicker.scss';
+import styles from './ColorPicker.module.scss';
 
 export const ColorPicker = ({ colors, onSelectColor, selectedColor }) =>
 (
 	<>
-		<div className="color-palette">
+		<div className={styles.colorPalette}>
 			{colors.map((color, index) =>
 				<button
-					onClick={ onSelectColor }
+					onClick={onSelectColor}
 					style={{ backgroundColor: color }}
-					key={ index }>
-				</button>
+					key={index}
+				/>
 			)}
 		</div>
 
-		<div className="selected-color" style={{ backgroundColor: selectedColor }} />
+		<div className={styles.selectedColor} style={{ backgroundColor: selectedColor }} />
 	</>
 );
